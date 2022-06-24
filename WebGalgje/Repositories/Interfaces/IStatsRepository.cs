@@ -1,6 +1,5 @@
-﻿namespace WebGalgje.Repositories
+﻿namespace WebGalgje.Repositories;
+
+public interface IStatsRepository
 {
-    public interface IStatsRepository
-    {
-    }
 }

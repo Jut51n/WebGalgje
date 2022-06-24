@@ -1,6 +1,5 @@
-﻿namespace WebGalgje.Repositories
+﻿namespace WebGalgje.Repositories;
+
+public interface IGameRepository
 {
-    public interface IGameRepository
-    {
-    }
 }

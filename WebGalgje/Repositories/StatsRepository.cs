@@ -1,6 +1,5 @@
-﻿namespace WebGalgje.Repositories
+﻿namespace WebGalgje.Repositories;
+
+public class StatsRepository : IStatsRepository
 {
-    public class StatsRepository : IStatsRepository
-    {
-    }
 }
