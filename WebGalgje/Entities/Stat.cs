@@ -1,4 +1,4 @@
-﻿namespace WebGalgje.DataAccess;
+﻿namespace WebGalgje.Entities;
 
 public class Stat
 {
@@ -8,6 +8,6 @@ public class Stat
     public int Tries { get; set; }
     public int WrongLettersGuessed { get; set; }
     
-    public virtual Player Speler { get; set; }
+    public virtual Player Speler { get; set; } //Navigation
 
 }

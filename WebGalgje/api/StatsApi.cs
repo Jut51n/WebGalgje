@@ -16,10 +16,10 @@ public class StatsApi : ControllerBase
         _statsRepo = statsrepo;
     }
 
-    [HttpGet]
+    //[HttpGet]
     //Haal alle stats op
 
-    [HttpPost]
+    //[HttpPost]
     //Statistieken van game naar stats wegschrijven
 
 

@@ -15,11 +15,11 @@ public class GameApi : ControllerBase
         _gameRepo = gamerepo;
     }
 
-    [HttpGet]
+    //[HttpGet]
     //Haal status van game op?
 
 
-    [HttpPost]
+   // [HttpPost]
     //Stuur status verandering
 
 }

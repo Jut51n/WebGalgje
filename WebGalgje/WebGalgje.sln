@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGalgje", "WebGalgje.csproj", "{A86DC4F5-9804-4989-9931-BF7492832CFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGalgje", "WebGalgje.csproj", "{A86DC4F5-9804-4989-9931-BF7492832CFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGalgje.Tests", "..\WebGalgje.Tests\WebGalgje.Tests.csproj", "{3B23B296-5705-4C06-A120-81EC1AAF46CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGalgje.Tests", "..\WebGalgje.Tests\WebGalgje.Tests.csproj", "{3B23B296-5705-4C06-A120-81EC1AAF46CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

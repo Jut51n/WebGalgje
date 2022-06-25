@@ -1,4 +1,4 @@
-﻿namespace WebGalgje.Repositories;
+﻿namespace WebGalgje.DataAccess.Repositories;
 
 public class StatsRepository : IStatsRepository
 {
