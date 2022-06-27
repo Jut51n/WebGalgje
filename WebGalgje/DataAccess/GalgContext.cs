@@ -16,4 +16,14 @@ public class GalgContext : IdentityDbContext<Player>
     {
 
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Player>()
+            .HasIndex(c => c.UserName)
+            .IsUnique();
+
+    }
 }

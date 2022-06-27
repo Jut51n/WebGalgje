@@ -7,6 +7,7 @@ namespace WebGalgje.Pages
 {
     public class SpelerModel : PageModel
     {
+        public string Status { get; set; }
 
         private UserManager<Player> _playerManager;
         private SignInManager<Player> _signInManager;
@@ -19,20 +20,26 @@ namespace WebGalgje.Pages
 
         public async Task OnGetAsync()
         {
-            string action = RouteData.Values["action"].ToString();
+            string action = "";
+            if (RouteData.Values["action"] != null)
+                action = RouteData.Values["action"].ToString();
 
             switch (action)
             {
                 case "Registreer":
-                    await RegisterPlayer();
+                    Status = "registreren";
+                    //await RegisterPlayer();
                     break;
                 case "Login":
-                    await LoginPlayer();
+                    Status = "Inloggen";
+                    //await LoginPlayer();
                     break;
                 case "SignOut":
-                    await SignOutPlayer();
+                    Status = "Outsignen";
+                    //await SignOutPlayer();
                     break;
                 default:
+                    Status = "default";
                     break;
             }
         }

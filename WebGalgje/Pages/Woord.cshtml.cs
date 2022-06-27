@@ -13,6 +13,11 @@ namespace WebGalgje.Pages
         [BindProperty]
         public Woord NewWoord { get; set; } //model binding!!!!
 
+		public WoordModel(IWoordRepository woordRepository)
+		{
+			WoordRepository = woordRepository;
+		}
+
 		public async Task OnGetAsync()
 		{
 			WoordList = await WoordRepository.GetAll();
@@ -20,14 +25,20 @@ namespace WebGalgje.Pages
 
 		public async Task<IActionResult> OnPostAsync()
 		{
+			if (WoordRepository.Contains(NewWoord))
+			{
+				ModelState.AddModelError("WoordAlInDb", "Mysterieuze foutmelding");
+            }
+
 			if (!ModelState.IsValid)
 			{
 				WoordList = await WoordRepository.GetAll();
-				return Page(); // render current page with validation messages
+				return Page(); 
 			}
 
 			await WoordRepository.Add(NewWoord);
-			return RedirectToPage(); // redirect using GET request
+			return RedirectToPage(); 
+
 		}
 	}
 }

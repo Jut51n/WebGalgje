@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebGalgje.Repositories;
+using WebGalgje.DataAccess.Repositories;
 
 namespace WebGalgje.api;
 

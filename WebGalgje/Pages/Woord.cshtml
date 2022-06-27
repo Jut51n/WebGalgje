@@ -1,9 +1,10 @@
 ﻿@page
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
 @model WebGalgje.Pages.WoordModel
 @{
 }
-
-<form onsubmit="" autocomplete="off" id="mijn-form">
+<div class="text-danger">@Html.ValidationSummary(false)</div>
+<form method="post" autocomplete="off" id="mijn-form">
     <ul>
         <li>
             <label class="input-field-label" for="woord-input">Woordtoevoeger:</label>
@@ -12,8 +13,10 @@
         </li> 
 
         <li class="speciaal">
-            <button>Voeg toe</button>
+            <input type="submit" value="Submit"/>
         </li>
     </ul>
       @Html.AntiForgeryToken()
 </form>
+
+<div class="general-message"> Er staan op dit moment @Model.WoordList.Count() woorden in de database</div>

@@ -1,10 +1,24 @@
-﻿@page "{action}"
+﻿@page "{action?}"
 @model WebGalgje.Pages.SpelerModel
-@{
+
+@Model.Status
+
+@if(User.Identity != null && User.Identity.IsAuthenticated )
+{
+    <div class="Welkom"> Hallo, @User.Identity.Name</div>
+    <a href='/Speler/Logout'>Logout</a><br/>
+}
+else
+{
+    <div class="Welkom"> Hallo, niet ingelogde gebruiker</div>
+
+    
+    
+    <a href='/Speler/Registreer'>Registreer</a><br/>
+    
+    
+    
+   <a href='/Speler/Login'>login</a><br/>
 }
 
-<a href="/Speler/Registreer">Registreer</a><br />
-<a href="/Speler/Login">login</a><br />
 
-
-<a href="/Speler/Logout">Logout</a><br />

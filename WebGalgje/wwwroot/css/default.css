@@ -2,6 +2,11 @@
     margin: 0px;
 }
 
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+
 li {
     list-style-type: none;
     margin: 0;
@@ -42,6 +47,8 @@ li {
     border-right: 1px solid white;
 }
 
+
+
 footer {
     position: absolute;
     bottom: 0;
@@ -54,15 +61,29 @@ footer {
 
 .input-field-label {
     display: block;
-    background-color: cadetblue;
     width: 200px;
-    margin: 10px 0px 0px 0px;
-    padding: 10px;
+    margin: 20px 0px 0px 0px;
 }
 
 .input-field {
     display: block;
     width: 200px;
-    margin: 5px 0px;
     padding: 10px;
+    margin: 10px 0px;
+}
+
+.text-danger {
+    display: block;
+    width: 100%;
+    height: 20px;
+}
+
+.validation-summary-errors li {
+    background-color: orangered;
+    padding: 5px;
+    text-align: center;
+}
+
+.general-message {
+    margin: 15px 0px;
 }

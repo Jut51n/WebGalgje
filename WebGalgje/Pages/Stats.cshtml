@@ -3,4 +3,46 @@
 @{
 }
 
-Stats
+<h1>Laatste 10 games:</h1>
+<table>
+    <thead>
+        <tr>
+            <th class="winst">Winst</th>
+            <th class="verlies">Verlies</th>
+            <th class="pogingen">Pogingen per game</th>
+            <th class="verkeerd">Verkeerde letter gegokt</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="winst"></td>
+            <td class="verlies"></td>
+            <td class="pogingen"></td>
+            <td class="verkeerd"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h1>Speler Ranking:</h1>
+<table>
+    <template id="ranking-template">
+        <tr>
+            <td class="username"></td>
+            <td class="potjes-gespeeld"></td>
+            <td class="winratio"></td>
+            <td class="pogingen-nodig"></td>
+        </tr>
+    </template>
+    <thead>
+    <tr>
+        <th class="username">Speler</th>
+        <th class="potjes-gespeeld">Potjes gespeeld</th>
+        <th class="winratio">Winratio</th>
+        <th class="pogingen-nodig">Pogingen per potje</th>
+    </tr>
+    </thead>
+    <tbody id="ranking-players">
+
+    </tbody>
+</table>
