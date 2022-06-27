@@ -12,13 +12,27 @@ else
 {
     <div class="Welkom"> Hallo, niet ingelogde gebruiker</div>
 
-    
-    
-    <a href='/Speler/Registreer'>Registreer</a><br/>
-    
-    
-    
-   <a href='/Speler/Login'>login</a><br/>
+    @Html.Raw(Model.FormAction)
+
+    <form method="post" action="Speler/register">
+         <ul>
+            <li>
+                <label class="input-field-label" for="woord-input">Woordtoevoeger:</label>
+                <input class="input-field" id="woord-input" type="text" data-val="true" data-val-maxlength="Maximaal 40 tekens" data-val-maxlength-max="40" data-val-regex="Alleen letters!" data-val-regex-pattern="^[a-zA-Z]" data-val-required="Vul dit in aub" maxlength="40" name="NewWoord.Word" value=""> 
+                <span class="field-validation-valid" data-valmsg-for="NewWoord.Word" data-valmsg-replace="true"></span>
+            </li> 
+            <li>
+                <label class="input-field-label" for="woord-input">Woordtoevoeger:</label>
+                <input class="input-field" id="woord-input" type="text" data-val="true" data-val-maxlength="Maximaal 40 tekens" data-val-maxlength-max="40" data-val-regex="Alleen letters!" data-val-regex-pattern="^[a-zA-Z]" data-val-required="Vul dit in aub" maxlength="40" name="NewWoord.Word" value=""> 
+                <span class="field-validation-valid" data-valmsg-for="NewWoord.Word" data-valmsg-replace="true"></span>
+            </li> 
+
+            <li class="speciaal">
+                <input type="submit" value="Submit"/>
+            </li>
+        </ul>
+      @Html.AntiForgeryToken()
+    </form>
 }
 
 

@@ -8,9 +8,12 @@ namespace WebGalgje.Pages
     public class SpelerModel : PageModel
     {
         public string Status { get; set; }
+        public string FormAction =  "< a href='/Speler/Registreer'>Registreer</a><br/><a href = '/Speler/Login' > login </ a >< br />";
 
         private UserManager<Player> _playerManager;
         private SignInManager<Player> _signInManager;
+
+        public FormUser userInput { get; set; } // binding
 
         public SpelerModel(UserManager<Player> userManager, SignInManager<Player> signInManager)
         {
@@ -28,6 +31,8 @@ namespace WebGalgje.Pages
             {
                 case "Registreer":
                     Status = "registreren";
+                    FormAction = ;
+
                     //await RegisterPlayer();
                     break;
                 case "Login":
@@ -35,11 +40,9 @@ namespace WebGalgje.Pages
                     //await LoginPlayer();
                     break;
                 case "SignOut":
-                    Status = "Outsignen";
-                    //await SignOutPlayer();
+                    await SignOutPlayer();
                     break;
                 default:
-                    Status = "default";
                     break;
             }
         }
@@ -58,7 +61,7 @@ namespace WebGalgje.Pages
         public async Task<IActionResult> SignOutPlayer()
         {
             await _signInManager.SignOutAsync();
-            return Page();
+            return RedirectToPage();
         }
     }
 }
