@@ -11,10 +11,12 @@ namespace WebGalgje.Entities
 
         [Required(ErrorMessage = "Password is verplicht")]
         [MinLength(8, ErrorMessage = "Een wachtwoord moet minstens 8 tekens lang zijn")]
-        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Hoofdletter, kleine letter en cijfer verplicht."]
+        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Hoofdletter, kleine letter en cijfer verplicht.")]
         public string Password { get; set; }
 
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Emailadres is niet goed geformateerd")]
         public string Email {  get; set; }
+
+        public string? Action { get; set; }
     }
 }

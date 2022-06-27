@@ -2,6 +2,7 @@
 @model WebGalgje.Pages.SpelerModel
 
 @Model.Status
+<div class="text-danger">@Html.ValidationSummary(false)</div>
 
 @if(User.Identity != null && User.Identity.IsAuthenticated )
 {
@@ -12,27 +13,61 @@ else
 {
     <div class="Welkom"> Hallo, niet ingelogde gebruiker</div>
 
-    @Html.Raw(Model.FormAction)
-
-    <form method="post" action="Speler/register">
-         <ul>
+    <h1>Registreren!</h1>
+    <form method="post" autocomplete="off" id="mijn-form">
+        <input id="action" name="UserInput.Action" type="hidden" value="Registreer" />
+        <ul>
             <li>
-                <label class="input-field-label" for="woord-input">Woordtoevoeger:</label>
-                <input class="input-field" id="woord-input" type="text" data-val="true" data-val-maxlength="Maximaal 40 tekens" data-val-maxlength-max="40" data-val-regex="Alleen letters!" data-val-regex-pattern="^[a-zA-Z]" data-val-required="Vul dit in aub" maxlength="40" name="NewWoord.Word" value=""> 
-                <span class="field-validation-valid" data-valmsg-for="NewWoord.Word" data-valmsg-replace="true"></span>
-            </li> 
-            <li>
-                <label class="input-field-label" for="woord-input">Woordtoevoeger:</label>
-                <input class="input-field" id="woord-input" type="text" data-val="true" data-val-maxlength="Maximaal 40 tekens" data-val-maxlength-max="40" data-val-regex="Alleen letters!" data-val-regex-pattern="^[a-zA-Z]" data-val-required="Vul dit in aub" maxlength="40" name="NewWoord.Word" value=""> 
-                <span class="field-validation-valid" data-valmsg-for="NewWoord.Word" data-valmsg-replace="true"></span>
+                <label class="input-field-label" for="username-input">Kies een Username</label>
+                <input class="input-field" id="username-input" type="text" data-val="true" name="UserInput.UserName" value=""> 
+                <span class="field-validation-valid" data-valmsg-for="UserInput.UserName" data-valmsg-replace="true"></span>
             </li> 
 
-            <li class="speciaal">
-                <input type="submit" value="Submit"/>
-            </li>
-        </ul>
+            <li>
+                <label class="input-field-label" for="password-input">Kies een wachtwoord:</label>
+                <input class="input-field" id="password-input" type="password" data-val="true" name="UserInput.Password" value=""> 
+                <span class="field-validation-valid" data-valmsg-for="UserInput.Password" data-valmsg-replace="true"></span>
+            </li> 
+
+            <li>
+                <label class="input-field-label" for="email-input">Email:</label>
+                <input class="input-field" id="email-input" type="text" data-val="true" name="UserInput.Email" value=""> 
+                <span class="field-validation-valid" data-valmsg-for="UserInput.Email" data-valmsg-replace="true"></span>
+            </li> 
+
+        <li class="speciaal">
+            <input type="submit" value="Submit"/>
+        </li>
+    </ul>
       @Html.AntiForgeryToken()
-    </form>
-}
+</form>
+
+<h1> OF Login</h1>
+<form method="post" autocomplete="off" id="mijn-form">
+    <input id="action" name="UserInput.Action" type="hidden" value="Login" />
+    <ul>
+            <li>
+                <label class="input-field-label" for="username-input">Kies een Username</label>
+                <input class="input-field" id="username-input" type="text" data-val="true" name="UserInput.UserName" value=""> 
+
+            </li> 
+
+            <li>
+                <label class="input-field-label" for="password-input">Kies een wachtwoord:</label>
+                <input class="input-field" id="password-input" type="password" data-val="true" name="UserInput.Password" value=""> 
+
+            </li> 
+
+        <li class="speciaal">
+            <input type="submit" value="Submit"/>
+        </li>
+    </ul>
+      @Html.AntiForgeryToken()
+</form>
+    
+ }
+
+
+
 
 
