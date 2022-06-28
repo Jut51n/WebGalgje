@@ -42,10 +42,10 @@ namespace WebGalgje.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if(UserInput.Action == "Registreer")
+            if(UserInput.Action == "Registreer" && UserInput.UserName != null)
             {
-                Player check = await _playerManager.FindByNameAsync(UserInput.UserName);
-                if(check != null)
+
+                if(await _playerManager.FindByNameAsync(UserInput.UserName) != null)
                 {
                     ModelState.AddModelError("UserNameBezet", "Mysterieuze foutmelding voor username");
                 }
@@ -53,26 +53,26 @@ namespace WebGalgje.Pages
                 {
                     return Page();
                 }
-                await RegisterPlayer(UserInput.UserName, UserInput.Password, UserInput.Email);
+                await RegisterPlayer(UserInput);
             } 
-            else if (UserInput.Action == "Login")
+            else if (UserInput.Action == "Login" && UserInput.UserName != null)
             {
-                await LoginPlayer(UserInput.UserName, UserInput.Password);
+                await LoginPlayer(UserInput);
             }
-                return RedirectToPage(); 
+                return RedirectToPage("Speler"); 
         }
 
-        public async Task<IActionResult> RegisterPlayer(string username, string password, string? email)
+        public async Task<IActionResult> RegisterPlayer(FormUser input)
         {
             var result = await _playerManager.CreateAsync( new Player
             {
-                UserName = username,
-                Email = email,
-            }, password);
+                UserName = input.UserName,
+                Email = input.Email,
+            }, input.Password);
 
             if (result.Succeeded)
             {
-                await LoginPlayer(username, password);
+                await LoginPlayer(input);
             }
             else
             {
@@ -82,9 +82,9 @@ namespace WebGalgje.Pages
             return RedirectToPage();
         }
 
-        public async Task<IActionResult> LoginPlayer(string username, string password)
+        public async Task<IActionResult> LoginPlayer(FormUser input)
         {
-            var result = await _signInManager.PasswordSignInAsync(username, password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(input.UserName, input.Password, false, false);
 
             if (result.Succeeded)
             {

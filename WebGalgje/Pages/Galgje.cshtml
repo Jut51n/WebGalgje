@@ -1,6 +1,18 @@
-﻿@page
+﻿@page "{action?}"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@attribute [Authorize]
 @model WebGalgje.Pages.GalgjeModel
 @{
 }
 
-Galgje
+@Model.getPlayer().Result.Id
+
+@if(Model.Game != null){
+    @Model.Game.Id
+    @Model.Game.Speler.UserName
+    @Model.Game.WordToGuess
+}
+else {
+     <a href='/Galgje/NewGame'>Start nieuwe game</a><br/>
+}

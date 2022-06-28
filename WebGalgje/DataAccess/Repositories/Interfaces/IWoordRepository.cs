@@ -9,4 +9,5 @@ public interface IWoordRepository
     Task<Woord> Add(Woord NewWoord);
     Task<IEnumerable<Woord>> GetAll();
     Boolean Contains(Woord NewWoord);
+    Task<Woord> GetRandomWord();
 }

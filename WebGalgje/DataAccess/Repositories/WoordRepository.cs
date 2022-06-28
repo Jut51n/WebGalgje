@@ -31,4 +31,11 @@ public class WoordRepository : IWoordRepository
         var result = _context.Words.Any(c => c.Word.Equals(newWoord.Word));
         return result;
     }
+
+    public async Task<Woord> GetRandomWord()
+    {
+        Random random = new Random();
+        int randomNumber = random.Next(1, _context.Words.Count());
+        return await _context.Words.Skip(randomNumber).Take(1).FirstAsync();
+    }
 }
