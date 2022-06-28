@@ -7,7 +7,8 @@
 @if(User.Identity != null && User.Identity.IsAuthenticated )
 {
     <div class="Welkom"> Hallo, @User.Identity.Name</div>
-    <a href='/Speler/Logout'>Logout</a><br/>
+    <a href='/Speler/Signout'>Logout</a><br/>
+    <a href='/Speler/Playerinfo'>Krijg informatie</a><br/>
 }
 else
 {
@@ -31,8 +32,7 @@ else
 
             <li>
                 <label class="input-field-label" for="email-input">Email:</label>
-                <input class="input-field" id="email-input" type="text" data-val="true" name="UserInput.Email" value=""> 
-                <span class="field-validation-valid" data-valmsg-for="UserInput.Email" data-valmsg-replace="true"></span>
+                <input class="input-field" id="email-input" type="text" name="UserInput.Email" value=""> 
             </li> 
 
         <li class="speciaal">

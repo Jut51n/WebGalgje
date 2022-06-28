@@ -7,15 +7,14 @@ namespace WebGalgje.Pages
 {
     public class SpelerModel : PageModel
     {
-        public string Status { get; set; }
-        public  string Action = "";
-        
         [BindProperty]
         public FormUser UserInput { get; set; } // binding
 
+        public string Status { get; set; }
+        public  string Action = "";
+        
         private UserManager<Player> _playerManager;
         private SignInManager<Player> _signInManager;
-
 
         public SpelerModel(UserManager<Player> userManager, SignInManager<Player> signInManager)
         {
@@ -24,22 +23,16 @@ namespace WebGalgje.Pages
         }
 
         public async Task OnGetAsync()
-        {
-            
+        {    
             if (RouteData.Values["action"] != null)
                 Action = RouteData.Values["action"].ToString();
 
             switch (Action)
             {
-                case "Registreer":
-                    Status = "registreren";
-                   //await RegisterPlayer();
+                case "Playerinfo":
+                    Status = "info";
                     break;
-                case "Login":
-                    Status = "Inloggen";
-                    //await LoginPlayer();
-                    break;
-                case "SignOut":
+                case "Signout":
                     await SignOutPlayer();
                     break;
                 default:
@@ -51,59 +44,63 @@ namespace WebGalgje.Pages
         {
             if(UserInput.Action == "Registreer")
             {
+                Player check = await _playerManager.FindByNameAsync(UserInput.UserName);
+                if(check != null)
+                {
+                    ModelState.AddModelError("UserNameBezet", "Mysterieuze foutmelding voor username");
+                }
                 if (!ModelState.IsValid)
                 {
                     return Page();
                 }
-
-                var result = await _playerManager.CreateAsync(new Player
-                {
-                    UserName = "Justin",
-                    Email = "Justin@gmail.com",
-                }, "Password123!");
-
-                if (result.Succeeded)
-                {
-                    Status = "Geregistreerd!";
-                }
+                await RegisterPlayer(UserInput.UserName, UserInput.Password, UserInput.Email);
             } 
             else if (UserInput.Action == "Login")
             {
-                var result = await _signInManager.PasswordSignInAsync("Justin", "Password123!", false, false);
+                await LoginPlayer(UserInput.UserName, UserInput.Password);
+            }
+                return RedirectToPage(); 
+        }
 
-                if (result.Succeeded)
-                {
-                    Status = "Ingelogd";
-                }
-                else
-                {
-                    Status = $"Kon niet inloggen: {result.RequiresTwoFactor} | {result.IsLockedOut} | {result.IsNotAllowed}";
-                }
+        public async Task<IActionResult> RegisterPlayer(string username, string password, string? email)
+        {
+            var result = await _playerManager.CreateAsync( new Player
+            {
+                UserName = username,
+                Email = email,
+            }, password);
+
+            if (result.Succeeded)
+            {
+                await LoginPlayer(username, password);
             }
             else
             {
+                ModelState.AddModelError("Login", "Password Heeft geen special character");
+                return Page();
+            }
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> LoginPlayer(string username, string password)
+        {
+            var result = await _signInManager.PasswordSignInAsync(username, password, false, false);
+
+            if (result.Succeeded)
+            {
                 return RedirectToPage();
             }
-
-
-
-            return RedirectToPage();
-
+            else
+            {
+                Status = $"Kon niet inloggen: {result.RequiresTwoFactor} | {result.IsLockedOut} | {result.IsNotAllowed}";
+                return Page();
+            }
         }
-
-        public async Task LoginPlayer()
-        {
-
-        }
-
 
         public async Task<IActionResult> SignOutPlayer()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToPage();
+            return RedirectToPage("Speler");
         }
-
- 
-
     }
 }
