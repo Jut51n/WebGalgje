@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebGalgje.DataAccess;
 
@@ -11,9 +12,10 @@ using WebGalgje.DataAccess;
 namespace WebGalgje.Migrations
 {
     [DbContext(typeof(GalgContext))]
-    partial class GalgContextModelSnapshot : ModelSnapshot
+    [Migration("20220630121421_lastguessnullable")]
+    partial class lastguessnullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

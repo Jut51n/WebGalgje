@@ -1,0 +1,35 @@
+﻿@page "{action?}"
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize]
+@model WebGalgje.Pages.PlayModel
+@{
+}
+@Model.UserMessage
+@Model.Pogingen
+@Model.GoodGuesses
+@Html.Raw(Model.GalgjeImage)
+
+@if(Model.Status == "Active")
+{
+    <div class="text-danger">@Html.ValidationSummary(false)</div>
+<form method="post" autocomplete="off" id="mijn-form">
+    <ul>
+        <li>
+            <label class="input-field-label" for="woord-input">Geef maar even een letter</label>
+            <input class="input-field" id="woord-input" type="text" name="Input.Guess" value=""> 
+            <span class="field-validation-valid" data-valmsg-for="Input.Guess" data-valmsg-replace="true"></span>
+        </li> 
+
+        <li class="speciaal">
+            <input type="submit" value="Submit"/>
+        </li>
+    </ul>
+      @Html.AntiForgeryToken()
+</form>
+}
+
+@if(Model.Status == "Done")
+{
+    <a href="/Play/WrapUp">Nog een keer</a>
+}
+

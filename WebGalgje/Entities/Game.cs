@@ -9,5 +9,7 @@ public class Game
     public int WrongTries { get; set; }
     public string LettersGuessed { get; set; }
 
+    public string? LastGuess { get; set; }
+
     public virtual Player Speler { get; set; } //Navigation
 }

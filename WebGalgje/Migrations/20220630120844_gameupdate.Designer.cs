@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebGalgje.DataAccess;
 
@@ -11,9 +12,10 @@ using WebGalgje.DataAccess;
 namespace WebGalgje.Migrations
 {
     [DbContext(typeof(GalgContext))]
-    partial class GalgContextModelSnapshot : ModelSnapshot
+    [Migration("20220630120844_gameupdate")]
+    partial class gameupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,6 +166,7 @@ namespace WebGalgje.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("LastGuess")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LettersGuessed")

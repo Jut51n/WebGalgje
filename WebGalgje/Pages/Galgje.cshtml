@@ -5,14 +5,13 @@
 @model WebGalgje.Pages.GalgjeModel
 @{
 }
-
-@Model.getPlayer().Result.Id
+@Model.Status
+@Html.Raw(Model.Link)
 
 @if(Model.Game != null){
     @Model.Game.Id
-    @Model.Game.Speler.UserName
+    @Model.User.Identity.Name
     @Model.Game.WordToGuess
 }
-else {
-     <a href='/Galgje/NewGame'>Start nieuwe game</a><br/>
-}
+
+
